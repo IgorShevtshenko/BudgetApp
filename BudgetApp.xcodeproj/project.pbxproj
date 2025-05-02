@@ -28,6 +28,8 @@
 		CFD980092DC5001C004BBDDA /* BudgetAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD980132DC5001C004BBDDA /* BudgetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD980272DC504B0004BBDDA /* ArchitectureKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ArchitectureKit; sourceTree = "<group>"; };
+		CFD980282DC50920004BBDDA /* BudgetFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BudgetFeature; sourceTree = "<group>"; };
+		CFD980292DC50B42004BBDDA /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -66,6 +68,8 @@
 		CFD97FF32DC5001B004BBDDA = {
 			isa = PBXGroup;
 			children = (
+				CFD980292DC50B42004BBDDA /* Domain */,
+				CFD980282DC50920004BBDDA /* BudgetFeature */,
 				CFD980272DC504B0004BBDDA /* ArchitectureKit */,
 				CFD97FFE2DC5001B004BBDDA /* BudgetApp */,
 				CFD97FFD2DC5001B004BBDDA /* Products */,
