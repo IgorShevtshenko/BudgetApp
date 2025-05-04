@@ -53,7 +53,7 @@ private extension BudgetOverviewView {
         }
     }
     
-    func header(budgetOverview: BudgetOverviewPayload) -> some View {
+    func header(budgetOverview: BudgetOverview) -> some View {
         VStack(alignment: .center, spacing: 4) {
             Text("This month spent")
                 .font(.title3)

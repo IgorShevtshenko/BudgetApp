@@ -1,4 +1,4 @@
-public struct SpendingCategory: Hashable {
+public struct SpendingCategory: Hashable, Sendable {
     public let name: String
     public let budget: BudgetPair
     

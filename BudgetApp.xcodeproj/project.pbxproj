@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF9654012DC769FB00181BB5 /* Services */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Services; sourceTree = "<group>"; };
 		CFD97FFC2DC5001B004BBDDA /* BudgetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD980092DC5001C004BBDDA /* BudgetAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD980132DC5001C004BBDDA /* BudgetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +69,7 @@
 		CFD97FF32DC5001B004BBDDA = {
 			isa = PBXGroup;
 			children = (
+				CF9654012DC769FB00181BB5 /* Services */,
 				CFD980292DC50B42004BBDDA /* Domain */,
 				CFD980282DC50920004BBDDA /* BudgetFeature */,
 				CFD980272DC504B0004BBDDA /* ArchitectureKit */,
@@ -401,7 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = igor.sevtsenko.BudgetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -429,7 +431,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = igor.sevtsenko.BudgetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -13,19 +13,25 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../ArchitectureKit"),
-        .package(path: "../Domain")
+        .package(path: "../Domain"),
+        .package(path: "../Services"),
     ],
     targets: [
         .target(
             name: "BudgetFeature",
             dependencies: [
                 .product(name: "ArchitectureKit", package: "ArchitectureKit"),
-                .product(name: "Domain", package: "Domain")
+                .product(name: "Domain", package: "Domain"),
+                .product(name: "Services", package: "Services"),
             ]
         ),
         .testTarget(
             name: "BudgetFeatureTests",
-            dependencies: ["BudgetFeature"]
+            dependencies: [
+                "BudgetFeature",
+                .product(name: "Domain", package: "Domain"),
+                .product(name: "Services", package: "Services"),
+            ]
         ),
     ]
 )
