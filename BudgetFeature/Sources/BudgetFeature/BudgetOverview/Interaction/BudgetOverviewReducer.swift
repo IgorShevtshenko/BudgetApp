@@ -1,6 +1,6 @@
 public enum BudgetOverviewReducer {
     
-    static func reduce(
+    public static func reduce(
         state: BudgetOverviewState,
         event: BudgetOverviewEvent
     ) -> BudgetOverviewState {

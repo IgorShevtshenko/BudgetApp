@@ -22,6 +22,8 @@ public final class BudgetOverviewViewModel: ViewModel<BudgetOverviewState, Budge
             dataEvents: events,
             reducer: reduce
         )
+        
+        send(.fetchBudgetOverview)
     }
     
     override public func send(_ action: BudgetOverviewAction) {
@@ -33,22 +35,32 @@ public final class BudgetOverviewViewModel: ViewModel<BudgetOverviewState, Budge
             events.send(.didChangeSelectedSpendingCategory(nil))
             
         case .fetchBudgetOverview:
-            task = Task { [dependencies] in
-                do throws(BudgetOverviewState.BudgetOverviewError) {
-                    events.send(.didStartLoadingBudgetOverview)
-                    let budget = try await dependencies.budgetService.budget()
-                    let spednigCategories = try await dependencies.budgetService.spendingCategories()
-                    events.send(
-                        .didFetchBudgetOverview(
-                            .init(
-                                budget: budget,
-                                spendingCategories: spednigCategories
-                            )
+            task?.cancel()
+            events.send(.didStartLoadingBudgetOverview)
+            task = fetchBudgetOverview()
+            
+        case .refreshBudgetOverview:
+            task?.cancel()
+            task = fetchBudgetOverview()
+        }
+    }
+    
+    private func fetchBudgetOverview() -> Task<Void, Never> {
+        Task { [dependencies] in
+            do throws(BudgetOverviewState.BudgetOverviewError) {
+                //MARK: Async let was not used here because of bug in latest xcode thar erases error type
+                let budget = try await dependencies.budgetService.budget()
+                let spednigCategories = try await dependencies.budgetService.spendingCategories()
+                events.send(
+                    .didFetchBudgetOverview(
+                        .init(
+                            budget: budget,
+                            spendingCategories: spednigCategories
                         )
                     )
-                } catch {
-                    events.send(.didFailFetchingBudgetOverview(error))
-                }
+                )
+            } catch {
+                events.send(.didFailFetchingBudgetOverview(error))
             }
         }
     }

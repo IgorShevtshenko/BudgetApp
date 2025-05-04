@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CFCCB23B2DC77FF000501F7B /* BudgetFeature in Frameworks */ = {isa = PBXBuildFile; productRef = CFCCB23A2DC77FF000501F7B /* BudgetFeature */; };
+		CFCCB23D2DC77FF000501F7B /* ServicesImpl in Frameworks */ = {isa = PBXBuildFile; productRef = CFCCB23C2DC77FF000501F7B /* ServicesImpl */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CFD9800A2DC5001C004BBDDA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		CF9654012DC769FB00181BB5 /* Services */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Services; sourceTree = "<group>"; };
+		CFCCB2382DC77F2F00501F7B /* ServicesImpl */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ServicesImpl; sourceTree = "<group>"; };
 		CFD97FFC2DC5001B004BBDDA /* BudgetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD980092DC5001C004BBDDA /* BudgetAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD980132DC5001C004BBDDA /* BudgetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFCCB23D2DC77FF000501F7B /* ServicesImpl in Frameworks */,
+				CFCCB23B2DC77FF000501F7B /* BudgetFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,14 +74,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CFCCB2392DC77FF000501F7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CFD97FF32DC5001B004BBDDA = {
 			isa = PBXGroup;
 			children = (
+				CFCCB2382DC77F2F00501F7B /* ServicesImpl */,
 				CF9654012DC769FB00181BB5 /* Services */,
 				CFD980292DC50B42004BBDDA /* Domain */,
 				CFD980282DC50920004BBDDA /* BudgetFeature */,
 				CFD980272DC504B0004BBDDA /* ArchitectureKit */,
 				CFD97FFE2DC5001B004BBDDA /* BudgetApp */,
+				CFCCB2392DC77FF000501F7B /* Frameworks */,
 				CFD97FFD2DC5001B004BBDDA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,6 +125,8 @@
 			);
 			name = BudgetApp;
 			packageProductDependencies = (
+				CFCCB23A2DC77FF000501F7B /* BudgetFeature */,
+				CFCCB23C2DC77FF000501F7B /* ServicesImpl */,
 			);
 			productName = BudgetApp;
 			productReference = CFD97FFC2DC5001B004BBDDA /* BudgetApp.app */;
@@ -548,6 +567,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CFCCB23A2DC77FF000501F7B /* BudgetFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BudgetFeature;
+		};
+		CFCCB23C2DC77FF000501F7B /* ServicesImpl */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ServicesImpl;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFD97FF42DC5001B004BBDDA /* Project object */;
 }

@@ -26,6 +26,7 @@ public struct SpendingCategoryCell: View {
 #Preview {
     SpendingCategoryCell(
         category: .init(
+            id: "1",
             name: "Food",
             budget: .init(limit: 1000, used: 744.30)
         )
