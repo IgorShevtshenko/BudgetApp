@@ -13,6 +13,7 @@ public final class BudgetOverviewViewModel: ViewModel<BudgetOverviewState, Budge
     
     public init(
         dependencies: Dependencies,
+        prepenendActions: [BudgetOverviewAction] = [.fetchBudgetOverview],
         reduce: @escaping (State, BudgetOverviewEvent) -> State
     ) {
         self.dependencies = dependencies
@@ -23,7 +24,9 @@ public final class BudgetOverviewViewModel: ViewModel<BudgetOverviewState, Budge
             reducer: reduce
         )
         
-        send(.fetchBudgetOverview)
+        prepenendActions.forEach { action in
+            send(action)
+        }
     }
     
     override public func send(_ action: BudgetOverviewAction) {
@@ -35,12 +38,10 @@ public final class BudgetOverviewViewModel: ViewModel<BudgetOverviewState, Budge
             events.send(.didChangeSelectedSpendingCategory(nil))
             
         case .fetchBudgetOverview:
-            task?.cancel()
             events.send(.didStartLoadingBudgetOverview)
             task = fetchBudgetOverview()
             
         case .refreshBudgetOverview:
-            task?.cancel()
             task = fetchBudgetOverview()
         }
     }

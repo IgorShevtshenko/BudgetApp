@@ -9,6 +9,7 @@ struct BudgetFeatureViewModelTests {
     @Test("Test choose category")
     func testShowSpendingCategoryDetails() async throws {
         let expectedCategory = SpendingCategory(
+            id: "1",
             name: "Food",
             budget: .init(limit: 100, used: 50)
         )
@@ -43,7 +44,7 @@ struct BudgetFeatureViewModelTests {
                     .init(
                         budget: .init(limit: 100, used: 50),
                         spendingCategories: [
-                            .init(name: "Food", budget: .init(limit: 100, used: 50))
+                            .init(id: "1", name: "Food", budget: .init(limit: 100, used: 50))
                         ]
                     )
                 )
@@ -57,7 +58,7 @@ struct BudgetFeatureViewModelTests {
                 }
             }
             viewModel.send(.fetchBudgetOverview)
-            try? await Task.sleep(for: .seconds(0.1))
+            try? await Task.sleep(for: .seconds(0.2))
         }
     }
     
@@ -80,7 +81,42 @@ struct BudgetFeatureViewModelTests {
                 }
             }
             viewModel.send(.fetchBudgetOverview)
-            try? await Task.sleep(for: .seconds(0.1))
+            try? await Task.sleep(for: .seconds(0.2))
+        }
+    }
+    
+    @Test("Test refresh budget overview succcess")
+    func testRefreshBudgetOverviewSuccess() async throws {
+        await confirmation { confirmation in
+            let expectedEvent =
+                BudgetOverviewEvent.didFetchBudgetOverview(
+                    .init(
+                        budget: .init(limit: 100, used: 50),
+                        spendingCategories: [
+                            .init(id: "1", name: "Food", budget: .init(limit: 100, used: 50))
+                        ]
+                    )
+                )
+            let viewModel = makeViewModel { event in
+                event == expectedEvent ? confirmation.confirm() : ()
+            }
+            viewModel.send(.refreshBudgetOverview)
+            try? await Task.sleep(for: .seconds(0.2))
+        }
+    }
+    
+    @Test("Test refresh budget overview failure")
+    func testRefreshBudgetOverviewFailure() async throws {
+        await confirmation { confirmation in
+            let expectedEvent = BudgetOverviewEvent.didFailFetchingBudgetOverview(.general)
+            let onGetBudget: () async throws(GetBudgetError) -> BudgetPair = { () throws(GetBudgetError) in
+                throw GetBudgetError.general
+            }
+            let viewModel = makeViewModel(onGetBudget: onGetBudget) { event in
+                event == expectedEvent ? confirmation.confirm() : ()
+            }
+            viewModel.send(.refreshBudgetOverview)
+            try? await Task.sleep(for: .seconds(0.2))
         }
     }
     
@@ -91,7 +127,7 @@ struct BudgetFeatureViewModelTests {
         onGetSpendingCategories: @escaping () async throws(
             GetSpendingCategoriesError
         ) -> [SpendingCategory] = {
-            return [.init(name: "Food", budget: .init(limit: 100, used: 50))]
+            return [.init(id: "1", name: "Food", budget: .init(limit: 100, used: 50))]
         },
         onSendEvent: @escaping (BudgetOverviewEvent) -> Void
     ) -> BudgetOverviewViewModel {
@@ -102,6 +138,7 @@ struct BudgetFeatureViewModelTests {
                     onGetSpendingCategories: onGetSpendingCategories
                 )
             ),
+            prepenendActions: [],
             reduce: { state, event in
                 onSendEvent(event)
                 return state
