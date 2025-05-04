@@ -2,8 +2,8 @@ import SwiftUI
 
 extension View {
     
-    func primaryBackground() -> some View {
-        frame(maxWidth: .infinity)
+    func primaryBackground(alignment: Alignment = .center) -> some View {
+        frame(maxWidth: .infinity, alignment: alignment)
             .padding(20)
             .background {
                 RoundedRectangle(cornerRadius: 18)

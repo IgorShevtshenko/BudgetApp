@@ -74,13 +74,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CFCCB2392DC77FF000501F7B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		CFD97FF32DC5001B004BBDDA = {
 			isa = PBXGroup;
 			children = (
@@ -90,7 +83,6 @@
 				CFD980282DC50920004BBDDA /* BudgetFeature */,
 				CFD980272DC504B0004BBDDA /* ArchitectureKit */,
 				CFD97FFE2DC5001B004BBDDA /* BudgetApp */,
-				CFCCB2392DC77FF000501F7B /* Frameworks */,
 				CFD97FFD2DC5001B004BBDDA /* Products */,
 			);
 			sourceTree = "<group>";
