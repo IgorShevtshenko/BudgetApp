@@ -1,12 +1,23 @@
 import SwiftUI
+import Domain
 import ArchitectureKit
 
-public struct BudgetOverviewView: View {
+public enum Routing {
+    case spendingCategoryDetails(SpendingCategory)
+}
+
+public struct BudgetOverviewView<RoutingView: View>: View {
     
     @ObservedObject private var viewModel: ViewModel<BudgetOverviewState, BudgetOverviewAction>
     
-    public init(viewModel: ViewModel<BudgetOverviewState, BudgetOverviewAction>) {
+    private let view: (Routing) -> RoutingView
+    
+    public init(
+        viewModel: ViewModel<BudgetOverviewState, BudgetOverviewAction>,
+        @ViewBuilder view: @escaping (Routing) -> RoutingView
+    ) {
         self.viewModel = viewModel
+        self.view = view
     }
     
     public var body: some View {
@@ -21,7 +32,12 @@ public struct BudgetOverviewView: View {
                         }
                         LazyVStack(alignment: .center, spacing: 26) {
                             ForEach(budgetOverview.spendingCategories) { category in
-                                SpendingCategoryCell(category: category)
+                                Button {
+                                    viewModel.send(.showSpendingCategoryDetails(category))
+                                } label: {
+                                    SpendingCategoryCell(category: category)
+                                }
+                                .buttonStyle(.plain)
                             }
                         }
                         .primaryBackground()
@@ -30,6 +46,14 @@ public struct BudgetOverviewView: View {
                 }
                 .refreshable {
                     viewModel.send(.refreshBudgetOverview)
+                }
+                .navigationDestination(
+                    item: Binding(
+                        get: { viewModel.state.selectedSpendingCategory },
+                        set: { _ in viewModel.send(.cancelSpendingCategoryDetails) }
+                    )
+                ) { category in
+                    view(.spendingCategoryDetails(category))
                 }
             case .failure(let error):
                 FailureView(error: description(for: error)) {
@@ -95,7 +119,8 @@ private extension BudgetOverviewView {
                     )
                 )
             )
-        )
+        ),
+        view: { _ in EmptyView() }
     )
 }
 
@@ -104,8 +129,9 @@ private extension BudgetOverviewView {
         viewModel: .init(
             constantState: .init(
                 budgetOverviewState: .failure(.general)
-            )
-        )
+            ),
+        ),
+        view: { _ in EmptyView() }
     )
 }
 
@@ -115,6 +141,7 @@ private extension BudgetOverviewView {
             constantState: .init(
                 budgetOverviewState: .loading
             )
-        )
+        ),
+        view: { _ in EmptyView() }
     )
 }
