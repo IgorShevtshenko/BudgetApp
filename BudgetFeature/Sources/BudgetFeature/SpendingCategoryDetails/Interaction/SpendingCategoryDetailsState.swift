@@ -3,11 +3,6 @@ import Domain
 public struct SpendingCategoryDetailsState {
     let category: SpendingCategory
     var transactionsState: TransactionsState = .loading
-    
-    public init(category: SpendingCategory, transactionsState: TransactionsState) {
-        self.category = category
-        self.transactionsState = transactionsState
-    }
 }
 
 extension SpendingCategoryDetailsState {

@@ -1,4 +1,4 @@
-public struct Transaction: Identifiable, Hashable {
+public struct Transaction: Identifiable, Hashable, Sendable {
     public let id: String
     public let merchant: String
     public let amount: Double
