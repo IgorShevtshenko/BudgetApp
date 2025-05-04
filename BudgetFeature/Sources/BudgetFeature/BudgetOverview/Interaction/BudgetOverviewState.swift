@@ -1,18 +1,19 @@
 import Domain
 
-public struct BudgetOverviewPayload: Equatable {
+public struct BudgetOverview: Equatable {
     public let budget: BudgetPair
     public let spendingCategories: [SpendingCategory]
 }
 
 public struct BudgetOverviewState {
     var budgetOverviewState: BudgetOverviewState = .loading
+    var selectedSpendingCategory: SpendingCategory?
 }
 
-extension BudgetOverviewState {
+public extension BudgetOverviewState {
     
     enum BudgetOverviewState: Equatable {
-        case success(BudgetOverviewPayload)
+        case success(BudgetOverview)
         case failure(BudgetOverviewError)
         case loading
     }

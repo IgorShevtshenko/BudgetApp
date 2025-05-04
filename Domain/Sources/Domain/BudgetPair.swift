@@ -1,4 +1,4 @@
-public struct BudgetPair: Hashable {
+public struct BudgetPair: Hashable, Sendable {
     public let limit: Double
     public let used: Double
     

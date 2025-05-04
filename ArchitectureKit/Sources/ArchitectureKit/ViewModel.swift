@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 
+@MainActor
 open class ViewModel<State, Action>: ObservableObject {
     
     public typealias State = State
