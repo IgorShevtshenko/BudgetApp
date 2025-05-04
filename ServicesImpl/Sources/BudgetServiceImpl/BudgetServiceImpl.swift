@@ -2,7 +2,7 @@ import BudgetService
 import Domain
 
 public struct BudgetServiceImpl: BudgetService {
-    
+        
     public init() {}
     
     public func getBudget() async throws(GetBudgetError) -> BudgetPair {
@@ -35,6 +35,18 @@ public struct BudgetServiceImpl: BudgetService {
                 name: "Travel",
                 budget: .init(limit: travelLimit, used: Double.random(in: 0...travelLimit))
             )
+        ]
+    }
+    
+    public func getTransactions(
+        for categoryId: String
+    ) async throws(GetSpendingCategoryTransactionsError) -> [Transaction] {
+        try? await Task.sleep(for: .seconds(1))
+        return [
+            .init(id: "1", merchant: "Grocery Store", amount: 50),
+            .init(id: "2", merchant: "Grocery Store", amount: 35),
+            .init(id: "3", merchant: "Restaurant", amount: 100),
+            .init(id: "4", merchant: "Pizza", amount: 15),
         ]
     }
 }
